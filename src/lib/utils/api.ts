@@ -45,7 +45,6 @@ export function cleanAndValidateParams<
   const cleaned = cleanEmptyParams(obj);
 
   if (schema) {
-    // Se schema foi fornecido, valida o resultado
     return schema.parse(cleaned);
   }
 
