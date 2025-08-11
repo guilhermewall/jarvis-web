@@ -23,7 +23,6 @@ export function AppShell({
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Topbar */}
       <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
         <div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -59,7 +58,6 @@ export function AppShell({
       </header>
 
       <div className="mx-auto max-w-6xl grid md:grid-cols-[240px_1fr] gap-4 px-4 py-4">
-        {/* Sidebar desktop */}
         <aside className="hidden md:block">
           <nav className="rounded-[var(--radius)] border border-border bg-card">
             <ul className="p-2">
@@ -81,11 +79,9 @@ export function AppShell({
           </nav>
         </aside>
 
-        {/* Conteúdo */}
         <main className="min-w-0">{children}</main>
       </div>
 
-      {/* Sidebar mobile (overlay simples) */}
       {open && (
         <div className="fixed inset-0 z-50 md:hidden">
           <button

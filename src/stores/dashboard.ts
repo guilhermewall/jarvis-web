@@ -3,15 +3,15 @@ import { persist } from "zustand/middleware";
 
 type Density = "comfortable" | "compact";
 
-type DashboardState = {
+interface DashboardState {
   search: string;
-  roomId: string | "";
+  roomId: string;
   density: Density;
   setSearch: (v: string) => void;
-  setRoomId: (id: string | "") => void;
+  setRoomId: (id: string) => void;
   setDensity: (d: Density) => void;
   reset: () => void;
-};
+}
 
 export const useDashboardStore = create<DashboardState>()(
   persist(

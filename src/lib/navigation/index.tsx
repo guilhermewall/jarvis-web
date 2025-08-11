@@ -19,5 +19,4 @@ export const navigationItems: NavigationItem[] = [
   },
 ];
 
-// Re-export dos tipos para facilitar imports
 export type { NavigationItem, NavKey } from "@/types/common";

@@ -7,7 +7,6 @@ export function AppShellLayout() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Mapear pathname para NavKey
   const getActiveKey = (): NavKey => {
     const path = location.pathname;
     if (path === "/" || path === "/dashboard") return "dashboard";
@@ -16,7 +15,6 @@ export function AppShellLayout() {
     return "dashboard"; // fallback
   };
 
-  // Navegar baseado na key
   const handleChange = (key: NavKey) => {
     const routes = {
       dashboard: "/",

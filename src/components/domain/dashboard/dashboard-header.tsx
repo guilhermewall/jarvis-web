@@ -1,5 +1,6 @@
 // src/components/domain/dashboard/dashboard-header.tsx
 import { Button } from "@/components/ui/button";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 interface DashboardHeaderProps {
   density: "comfortable" | "compact";
@@ -21,22 +22,22 @@ export function DashboardHeader({
         </p>
       </div>
       <div className="flex items-center gap-2">
-        <div className="hidden sm:flex items-center rounded-[var(--radius)] border border-border overflow-hidden">
-          <button
-            className={`px-3 py-1.5 text-sm ${density === "comfortable" ? "bg-muted" : "hover:bg-muted"}`}
-            onClick={() => onDensityChange("comfortable")}
-          >
+        <ToggleGroup
+          type="single"
+          value={density}
+          onValueChange={(value) =>
+            value && onDensityChange(value as "comfortable" | "compact")
+          }
+          className="hidden sm:flex"
+        >
+          <ToggleGroupItem value="comfortable" className="text-sm">
             Confortável
-          </button>
-          <button
-            className={`px-3 py-1.5 text-sm ${density === "compact" ? "bg-muted" : "hover:bg-muted"}`}
-            onClick={() => onDensityChange("compact")}
-          >
+          </ToggleGroupItem>
+          <ToggleGroupItem value="compact" className="text-sm">
             Compacto
-          </button>
-        </div>
+          </ToggleGroupItem>
+        </ToggleGroup>
 
-        {/* o botão/trigger vem de fora */}
         {trigger ?? <Button disabled>Carregando…</Button>}
       </div>
     </div>

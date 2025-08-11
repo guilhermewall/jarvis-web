@@ -6,7 +6,6 @@ const envSchema = z.object({
   VITE_APP_VERSION: z.string().default("1.0.0"),
 });
 
-// No Vite, usar import.meta.env em vez de process.env
 const _env = envSchema.safeParse(import.meta.env);
 
 if (!_env.success) {
@@ -16,7 +15,6 @@ if (!_env.success) {
 
 export const env = _env.data;
 
-// Helper para debug (só em dev)
 if (import.meta.env.DEV) {
   console.log("🔧 Variáveis carregadas:", env);
 }

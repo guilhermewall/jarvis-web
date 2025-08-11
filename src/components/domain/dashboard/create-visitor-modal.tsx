@@ -57,7 +57,6 @@ export function CreateVisitorModal({
       birthDate: values.birthDate || undefined,
     };
 
-    // Regra de capacidade no cliente (servidor também valida)
     const room = roomMap.get(payload.roomId);
     if (room && room.activeCount >= room.capacity) {
       form.setError("roomId", {
@@ -100,7 +99,6 @@ export function CreateVisitorModal({
           )}
         </div>
 
-        {/* CPF (Controlado para máscara visual, armazena dígitos) */}
         <div className="grid gap-1">
           <Label htmlFor="cpf">CPF</Label>
           <Controller
@@ -123,7 +121,6 @@ export function CreateVisitorModal({
           )}
         </div>
 
-        {/* Sala (Select shadcn) */}
         <div className="grid gap-1">
           <Label>Sala de destino</Label>
           <Controller
@@ -151,7 +148,6 @@ export function CreateVisitorModal({
           )}
         </div>
 
-        {/* Opcionais */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="grid gap-1">
             <Label htmlFor="birth">Data de nascimento (opcional)</Label>

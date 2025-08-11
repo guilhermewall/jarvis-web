@@ -10,7 +10,6 @@ export interface LoginResponse {
   user: User;
 }
 
-// Tipo mais simples para o que o backend atual retorna
 export interface SimpleLoginResponse {
   token: string;
 }
