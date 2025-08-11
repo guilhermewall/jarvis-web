@@ -1,10 +1,85 @@
+// src/pages/Dashboard.tsx
+import { useMemo, useState } from "react";
+
+import { useRooms } from "@/hooks/rooms";
+import { useActiveVisitors, useCheckoutVisitor } from "@/hooks/visitors";
+import { useDashboardStore } from "@/stores/dashboard";
+
+import {
+  RoomCards,
+  DashboardHeader,
+  DashboardFilters,
+  VisitorsTable,
+  CreateVisitorModal,
+} from "@/components/domain/dashboard";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+
 export default function Dashboard() {
+  const [open, setOpen] = useState(false);
+
+  const { data: rooms } = useRooms();
+  const { search, roomId, setSearch, setRoomId, density, setDensity, reset } =
+    useDashboardStore();
+
+  const { data: active } = useActiveVisitors({
+    search: search || undefined,
+    roomId: roomId || undefined,
+  });
+
+  const checkout = useCheckoutVisitor();
+
+  const roomMap = useMemo(() => {
+    const map = new Map<
+      string,
+      { name: string; capacity: number; activeCount: number }
+    >();
+    rooms?.forEach((room) => map.set(room.id, room));
+    return map;
+  }, [rooms]);
+
   return (
-    <div className="grid gap-4">
-      <h2 className="text-lg font-semibold">Dashboard</h2>
-      <p className="text-sm text-muted-foreground">
-        Aqui entram os cards de salas, barra de busca e tabela de ativos.
-      </p>
+    <div className="grid gap-6">
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DashboardHeader
+          density={density}
+          onDensityChange={setDensity}
+          trigger={
+            <DialogTrigger asChild>
+              <Button>
+                <Plus className="size-4" /> Novo visitante
+              </Button>
+            </DialogTrigger>
+          }
+        />
+        <CreateVisitorModal
+          onClose={() => setOpen(false)}
+          rooms={rooms ?? []}
+          roomMap={roomMap}
+        />
+      </Dialog>
+
+      {/* Cards de status das salas */}
+      {rooms && <RoomCards rooms={rooms} />}
+
+      {/* Filtros de busca */}
+      <DashboardFilters
+        search={search}
+        roomId={roomId}
+        rooms={rooms ?? []}
+        onSearchChange={setSearch}
+        onRoomChange={setRoomId}
+        onReset={reset}
+      />
+
+      {/* Tabela de visitantes ativos */}
+      <VisitorsTable
+        visitors={active ?? []}
+        density={density}
+        onCheckout={(id) => checkout.mutate(id)}
+        isCheckingOut={checkout.isPending}
+      />
     </div>
   );
 }

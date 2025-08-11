@@ -22,5 +22,5 @@ export interface NavigationItem {
   key: NavKey;
   label: string;
   icon: React.ReactNode;
-  href?: string; // Opcional para sistemas que usam onChange
+  href?: string;
 }
