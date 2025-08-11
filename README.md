@@ -1,4 +1,4 @@
-# 🤖 JARVIS Web
+# 🤖 JARVIS Web: https://jarvis-web-mu.vercel.app/
 
 **Sistema de Gerenciamento de Visitantes e Controle de Acesso**
 
@@ -413,50 +413,6 @@ export const api = axios.create({
 - ✅ Logout seguro
 - ✅ Renovação automática de token
 
-## 🚀 Deploy e Produção
-
-### ⚡ Vercel (Recomendado)
-
-```bash
-# 1. Instale a Vercel CLI
-npm i -g vercel
-
-# 2. Login na Vercel
-vercel login
-
-# 3. Deploy de produção
-npm run deploy:vercel
-
-# 4. Deploy de preview
-npm run deploy:preview
-```
-
-**🎯 Por que Vercel?**
-
-- ✅ Deploy automático com Git
-- ✅ Preview deployments para PRs
-- ✅ Edge Network global
-- ✅ Suporte nativo ao Vite
-- ✅ Variáveis de ambiente seguras
-
-### 🐳 Docker (Alternativa)
-
-```dockerfile
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-COPY . .
-RUN npm run build
-EXPOSE 5173
-CMD ["npm", "run", "preview"]
-```
-
-### ☁️ Outras Plataformas
-
-- **Netlify**: JAMstack otimizado
-- **AWS S3 + CloudFront**: Distribuição global
-- **GitHub Pages**: Hospedagem gratuita (mais configuração)## 🤝 Contribuição
 
 ### 📋 Como Contribuir
 
