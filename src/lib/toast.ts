@@ -70,4 +70,38 @@ export const appToast = {
       });
     },
   },
+
+  visitors: {
+    created: (visitorName?: string) => {
+      return appToast.success("Visitante cadastrado com sucesso!", {
+        description: visitorName
+          ? `${visitorName} foi adicionado à sala`
+          : "O visitante foi adicionado à sala",
+        duration: 4000,
+      });
+    },
+
+    checkedOut: (visitorName?: string) => {
+      return appToast.success("Saída registrada com sucesso!", {
+        description: visitorName
+          ? `${visitorName} foi removido da sala`
+          : "O visitante foi removido da sala",
+        duration: 4000,
+      });
+    },
+
+    createError: (message?: string) => {
+      return appToast.error("Erro ao cadastrar visitante", {
+        description: message || "Tente novamente em alguns instantes",
+        duration: 5000,
+      });
+    },
+
+    checkoutError: (message?: string) => {
+      return appToast.error("Erro ao registrar saída", {
+        description: message || "Tente novamente em alguns instantes",
+        duration: 5000,
+      });
+    },
+  },
 };

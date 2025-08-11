@@ -1,6 +1,7 @@
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
 import { AppShell } from "./app-shell";
 import { appToast } from "@/lib/toast";
+import { auth } from "@/lib/auth";
 import type { NavKey } from "@/types/common";
 
 export function AppShellLayout() {
@@ -25,9 +26,14 @@ export function AppShellLayout() {
   };
 
   const handleLogout = () => {
-    // Implementar logout aqui
+    // Limpar token do localStorage
+    auth.clear();
+
+    // Mostrar toast de sucesso
     appToast.auth.logoutSuccess();
-    navigate("/login");
+
+    // Redirecionar para login sem permitir voltar (replace: true)
+    navigate("/login", { replace: true });
   };
 
   return (
