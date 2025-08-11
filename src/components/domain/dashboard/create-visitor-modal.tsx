@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { DateInput } from "@/components/ui/date-input";
 import { Label } from "@/components/ui/label";
 import { useCreateVisitor } from "@/hooks/visitors";
 import {
@@ -48,6 +49,12 @@ export function CreateVisitorModal({
     },
     mode: "onSubmit",
   });
+
+  // Função para fechar modal e resetar form
+  const handleClose = () => {
+    form.reset();
+    onClose();
+  };
 
   async function onSubmit(values: CreateVisitorInput) {
     const payload = {
@@ -151,7 +158,12 @@ export function CreateVisitorModal({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="grid gap-1">
             <Label htmlFor="birth">Data de nascimento (opcional)</Label>
-            <Input id="birth" type="date" {...form.register("birthDate")} />
+            <DateInput id="birth" {...form.register("birthDate")} />
+            {form.formState.errors.birthDate && (
+              <p className="text-xs text-destructive">
+                {form.formState.errors.birthDate.message}
+              </p>
+            )}
           </div>
           <div className="grid gap-1">
             <Label htmlFor="email">E-mail (opcional)</Label>
@@ -161,11 +173,16 @@ export function CreateVisitorModal({
               placeholder="nome@exemplo.com"
               {...form.register("email")}
             />
+            {form.formState.errors.email && (
+              <p className="text-xs text-destructive">
+                {form.formState.errors.email.message}
+              </p>
+            )}
           </div>
         </div>
 
         <DialogFooter>
-          <Button type="button" variant="ghost" onClick={onClose}>
+          <Button type="button" variant="ghost" onClick={handleClose}>
             Cancelar
           </Button>
           <Button type="submit" disabled={create.isPending}>
