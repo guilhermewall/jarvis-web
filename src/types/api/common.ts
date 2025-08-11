@@ -7,7 +7,6 @@ export interface ApiErrorResponse {
   timestamp?: string;
 }
 
-// Tipos para respostas de sucesso paginadas
 export interface PaginatedResponse<T> {
   data: T[];
   total: number;
@@ -16,8 +15,6 @@ export interface PaginatedResponse<T> {
   hasNext: boolean;
   hasPrev: boolean;
 }
-
-// Tipos para respostas simples
 export interface ApiResponse<T> {
   data: T;
   message?: string;

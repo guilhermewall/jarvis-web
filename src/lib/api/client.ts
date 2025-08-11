@@ -9,13 +9,11 @@ export const api = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-// handler opcional para 401 (configuramos no app)
 let onUnauthorized: (() => void) | null = null;
 export function setOnUnauthorized(handler: (() => void) | null) {
   onUnauthorized = handler;
 }
 
-// REQUEST: injeta Authorization com token atual
 api.interceptors.request.use((config) => {
   const token = auth.get();
   if (token) {
@@ -25,7 +23,6 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// helper para normalizar erro em Error(message)
 function normalizeAxiosError(err: unknown): Error {
   const ax = err as AxiosError<ApiErrorResponse>;
   const msg =
@@ -36,7 +33,6 @@ function normalizeAxiosError(err: unknown): Error {
   return new Error(msg);
 }
 
-// RESPONSE: trata 401/403 e propaga erro normalizado
 api.interceptors.response.use(
   (res) => res,
   (error) => {

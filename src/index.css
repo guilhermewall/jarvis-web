@@ -1,13 +1,10 @@
-/* 1) carrega Tailwind v4 e o plugin de animações */
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 @plugin "tailwindcss-animate";
 
-/* 2) diz ao Tailwind onde varrer classes (opcional, mas ajuda) */
 @source "./index.html" "./src/**/*.{ts,tsx}";
 
-/* 3) design tokens (light) — mapeados pros utilitários shadcn (bg-background, text-foreground, etc.) */
 @theme {
   --radius: 0.75rem;
 
@@ -40,7 +37,6 @@
   --color-ring: oklch(0.32 0 0);
 }
 
-/* 4) tokens (dark) — basta adicionar class="dark" no <html> ou <body> */
 @theme .dark {
   --color-background: oklch(0.14 0 0);
   --color-foreground: oklch(0.98 0 0);
@@ -71,7 +67,6 @@
   --color-ring: oklch(0.86 0 0);
 }
 
-/* 5) base: aplica tokens em body/bordas para shadcn funcionar de primeira */
 @layer base {
   * {
     border-color: var(--color-border);

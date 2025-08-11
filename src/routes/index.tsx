@@ -10,10 +10,8 @@ import Login from "@/pages/login";
 export default function AppRoutes() {
   return (
     <Routes>
-      {/* pública */}
       <Route path="/login" element={<Login />} />
 
-      {/* protegidas */}
       <Route element={<ProtectedRoute />}>
         <Route element={<AppShellLayout />}>
           <Route index element={<Dashboard />} />

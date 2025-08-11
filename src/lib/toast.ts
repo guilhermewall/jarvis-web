@@ -1,6 +1,5 @@
 import { toast } from "sonner";
 
-// Tipos para os toasts da aplicação
 export interface ToastOptions {
   description?: string;
   duration?: number;
@@ -10,7 +9,6 @@ export interface ToastOptions {
   };
 }
 
-// Helper para toasts tipados e consistentes
 export const appToast = {
   success: (message: string, options?: ToastOptions) => {
     return toast.success(message, {
@@ -48,7 +46,6 @@ export const appToast = {
     return toast.loading(message);
   },
 
-  // Para casos especiais da aplicação
   auth: {
     loginSuccess: (userName?: string) => {
       return appToast.success("Login realizado com sucesso!", {

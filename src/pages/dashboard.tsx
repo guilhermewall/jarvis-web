@@ -60,10 +60,8 @@ export default function Dashboard() {
         />
       </Dialog>
 
-      {/* Cards de status das salas */}
       {rooms && <RoomCards rooms={rooms} />}
 
-      {/* Filtros de busca */}
       <DashboardFilters
         search={search}
         roomId={roomId}
@@ -73,7 +71,6 @@ export default function Dashboard() {
         onReset={reset}
       />
 
-      {/* Tabela de visitantes ativos */}
       <VisitorsTable
         visitors={active ?? []}
         density={density}

@@ -4,7 +4,6 @@ import type { LogsFiltersProps, LogsResponse } from "@/types/logs";
 export async function fetchLogs(
   params: LogsFiltersProps
 ): Promise<LogsResponse & { hasNext: boolean }> {
-  // remove vazios
   const p = { ...params };
   Object.keys(p).forEach((key) => {
     const k = key as keyof LogsFiltersProps;

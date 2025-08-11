@@ -76,7 +76,6 @@ export function HistoryTable({
           </table>
         </div>
 
-        {/* paginação */}
         <div className="flex items-center justify-between text-xs text-muted-foreground">
           <div>
             {rows.length > 0
