@@ -10,6 +10,7 @@ import {
   fetchActiveVisitors,
 } from "@/services/visitors";
 import { QUERY_KEY } from "@/constants/react-query";
+import { appToast } from "@/lib/toast";
 
 export const useActiveVisitors = (p: { roomId?: string; search?: string }) =>
   useQuery({
@@ -22,9 +23,13 @@ export const useCreateVisitor = () => {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: createVisitor,
-    onSuccess: () => {
+    onSuccess: (_, variables) => {
       qc.invalidateQueries({ queryKey: [QUERY_KEY.VISITORS, "active"] });
       qc.invalidateQueries({ queryKey: [QUERY_KEY.ROOMS] });
+      appToast.visitors.created(variables.name);
+    },
+    onError: (error: Error) => {
+      appToast.visitors.createError(error.message);
     },
   });
 };
@@ -36,6 +41,10 @@ export const useCheckoutVisitor = () => {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: [QUERY_KEY.VISITORS, "active"] });
       qc.invalidateQueries({ queryKey: [QUERY_KEY.ROOMS] });
+      appToast.visitors.checkedOut();
+    },
+    onError: (error: Error) => {
+      appToast.visitors.checkoutError(error.message);
     },
   });
 };
