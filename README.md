@@ -332,6 +332,8 @@ npm run format:check     # Verifica formatação
 npm run typecheck        # Verifica tipos TypeScript
 
 # 🔧 Utilitários
+npm run deploy:vercel     # Deploy de produção na Vercel
+npm run deploy:preview    # Deploy de preview na Vercel
 npm run prepare          # Setup dos hooks do Husky
 ```
 
@@ -413,7 +415,31 @@ export const api = axios.create({
 
 ## 🚀 Deploy e Produção
 
-### 🐳 Docker (Recomendado)
+### ⚡ Vercel (Recomendado)
+
+```bash
+# 1. Instale a Vercel CLI
+npm i -g vercel
+
+# 2. Login na Vercel
+vercel login
+
+# 3. Deploy de produção
+npm run deploy:vercel
+
+# 4. Deploy de preview
+npm run deploy:preview
+```
+
+**🎯 Por que Vercel?**
+
+- ✅ Deploy automático com Git
+- ✅ Preview deployments para PRs
+- ✅ Edge Network global
+- ✅ Suporte nativo ao Vite
+- ✅ Variáveis de ambiente seguras
+
+### 🐳 Docker (Alternativa)
 
 ```dockerfile
 FROM node:18-alpine
@@ -426,14 +452,11 @@ EXPOSE 5173
 CMD ["npm", "run", "preview"]
 ```
 
-### ☁️ Plataformas Suportadas
+### ☁️ Outras Plataformas
 
-- **Vercel**: Deploy automático
 - **Netlify**: JAMstack otimizado
 - **AWS S3 + CloudFront**: Distribuição global
-- **GitHub Pages**: Hospedagem gratuita
-
-## 🤝 Contribuição
+- **GitHub Pages**: Hospedagem gratuita (mais configuração)## 🤝 Contribuição
 
 ### 📋 Como Contribuir
 
