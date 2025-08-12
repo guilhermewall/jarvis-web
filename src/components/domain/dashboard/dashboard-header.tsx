@@ -14,14 +14,14 @@ export function DashboardHeader({
   trigger,
 }: DashboardHeaderProps) {
   return (
-    <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-      <div>
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div className="min-w-0">
         <h2 className="text-xl font-semibold">Dashboard</h2>
         <p className="text-sm text-muted-foreground">
           Status das salas, visitantes ativos e cadastro
         </p>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
         <ToggleGroup
           type="single"
           value={density}

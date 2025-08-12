@@ -24,20 +24,22 @@ export function AppShell({
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur">
-        <div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <div className="mx-auto max-w-6xl px-3 sm:px-4 h-14 flex items-center justify-between min-w-0">
+          <div className="flex items-center gap-2 min-w-0 flex-shrink">
             <Button
               variant="ghost"
               size="sm"
-              className="md:hidden"
+              className="md:hidden flex-shrink-0"
               aria-label="Abrir menu"
               onClick={() => setOpen(true)}
             >
               <Menu className="size-4" />
             </Button>
-            <div className="font-semibold tracking-tight">J.A.R.V.I.S</div>
+            <div className="font-semibold tracking-tight truncate">
+              J.A.R.V.I.S
+            </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
             <Button
               variant="ghost"
               size="sm"
@@ -57,7 +59,7 @@ export function AppShell({
         </div>
       </header>
 
-      <div className="mx-auto max-w-6xl grid md:grid-cols-[240px_1fr] gap-4 px-4 py-4">
+      <div className="mx-auto max-w-6xl grid md:grid-cols-[240px_1fr] gap-4 px-3 sm:px-4 py-4 min-w-0">
         <aside className="hidden md:block">
           <nav className="rounded-[var(--radius)] border border-border bg-card">
             <ul className="p-2">
@@ -79,7 +81,7 @@ export function AppShell({
           </nav>
         </aside>
 
-        <main className="min-w-0">{children}</main>
+        <main className="min-w-0 overflow-hidden">{children}</main>
       </div>
 
       {open && (

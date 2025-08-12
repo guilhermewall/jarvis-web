@@ -27,15 +27,17 @@ export function VisitorsTable({
         <CardTitle className="text-base">Visitantes ativos</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto -mx-2 sm:mx-0">
           <table className={tableClasses}>
             <thead>
               <tr className="text-left border-b border-border">
-                <th className="px-2">Nome</th>
-                <th className="px-2">CPF</th>
-                <th className="px-2">Sala</th>
-                <th className="px-2">Entrada</th>
-                <th className="px-2 text-right">Ações</th>
+                <th className="px-2 min-w-[120px]">Nome</th>
+                <th className="px-2 hidden sm:table-cell min-w-[100px]">CPF</th>
+                <th className="px-2 min-w-[80px]">Sala</th>
+                <th className="px-2 hidden md:table-cell min-w-[120px]">
+                  Entrada
+                </th>
+                <th className="px-2 text-right min-w-[100px]">Ações</th>
               </tr>
             </thead>
             <tbody>
