@@ -53,6 +53,7 @@ export default function Dashboard() {
             </DialogTrigger>
           }
         />
+
         <CreateVisitorModal
           onClose={() => setOpen(false)}
           rooms={rooms ?? []}
